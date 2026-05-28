@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WWII Inquiry Project</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --olive: #4a4a2a;
+      --khaki: #8b7d5a;
+      --cream: #f5f0e0;
+      --dark: #1e1c14;
+      --rust: #8b3a1a;
+      --faded: #c9b99a;
+      --paper: #ede8d5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--dark);
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px),
+        radial-gradient(ellipse at top left, #2a2810 0%, #1e1c14 60%);
+      color: var(--cream);
+      font-family: 'Libre Baskerville', serif;
+      min-height: 100vh;
+      padding: 0 0 80px 0;
+    }
+    .hero {
+      background: linear-gradient(to bottom, #0a0a06 0%, #1e1c14 100%);
+      border-bottom: 4px solid var(--khaki);
+      padding: 60px 24px 50px;
+      text-align: center;
+    }
+    .hero::before {
+      content: "✦ 1939 – 1945 ✦";
+      display: block;
+      font-family: 'Special Elite', cursive;
+      font-size: 0.85em;
+      letter-spacing: 6px;
+      color: var(--khaki);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-family: 'Special Elite', cursive;
+      font-size: clamp(1.8em, 5vw, 3.2em);
+      color: var(--cream);
+      letter-spacing: 2px;
+      line-height: 1.2;
+      text-shadow: 3px 3px 12px rgba(0,0,0,0.8);
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      color: var(--faded);
+      font-size: 0.55em;
+      display: block;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+    .inquiry-box {
+      max-width: 720px;
+      margin: 28px auto 0;
+      border: 2px solid var(--khaki);
+      background: rgba(74,74,42,0.2);
+      padding: 22px 28px;
+      position: relative;
+    }
+    .inquiry-box::before {
+      content: "APPROVED INQUIRY QUESTION";
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0a0a06;
+      padding: 0 12px;
+      font-family: 'Special Elite', cursive;
+      font-size: 0.7em;
+      letter-spacing: 3px;
+      color: var(--khaki);
+      white-space: nowrap;
+    }
+    .inquiry-box p {
+      font-style: italic;
+      font-size: 1.05em;
+      color: var(--cream);
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .exhibit { margin-top: 60px; }
+    .exhibit-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .exhibit-tag {
+      background: var(--rust);
+      font-family: 'Special Elite', cursive;
+      font-size: 0.75em;
+      letter-spacing: 3px;
+      padding: 6px 14px;
+      color: var(--cream);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .exhibit-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, var(--rust), transparent);
+    }
+    .exhibit-title {
+      font-family: 'Special Elite', cursive;
+      font-size: 1.5em;
+      color: var(--faded);
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .paper-card {
+      background: var(--paper);
+      color: var(--dark);
+      border-left: 5px solid var(--khaki);
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      position: relative;
+      box-shadow: 4px 4px 20px rgba(0,0,0,0.5);
+    }
+    .paper-card::after {
+      content: "";
+      position: absolute;
+      top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 28px 28px 0;
+      border-color: transparent var(--dark) transparent transparent;
+    }
+    .card-label {
+      font-family: 'Special Elite', cursive;
+      font-size: 0.75em;
+      letter-spacing: 3px;
+      color: var(--rust);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+    .card-title {
+      font-family: 'Special Elite', cursive;
+      font-size: 1.2em;
+      color: var(--olive);
+      margin-bottom: 14px;
+      border-bottom: 1px dashed var(--khaki);
+      padding-bottom: 10px;
+    }
+    .paper-card ul { padding-left: 20px; list-style: none; }
+    .paper-card ul li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 10px;
+      font-size: 0.97em;
+      line-height: 1.65;
+      color: #2a2010;
+    }
+    .paper-card ul li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--rust);
+      font-size: 0.85em;
+      top: 2px;
+    }
+    .source-footer {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed #b0a080;
+      font-size: 0.82em;
+      color: #5a4a30;
+    }
+    .source-footer strong {
+      font-family: 'Special Elite', cursive;
+      color: var(--rust);
+      letter-spacing: 1px;
+    }
+    .source-footer a {
+      color: var(--olive);
+      word-break: break-all;
+      text-decoration: underline dotted;
+      display: block;
+      margin-top: 3px;
+    }
+    .source-footer a:hover { color: var(--rust); }
+    .cite-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .cite-card {
+      background: rgba(74,74,42,0.15);
+      border: 1px solid var(--khaki);
+      padding: 16px 18px;
+    }
+    .cite-num {
+      font-family: 'Special Elite', cursive;
+      font-size: 0.7em;
+      letter-spacing: 2px;
+      color: var(--khaki);
+      margin-bottom: 6px;
+    }
+    .cite-card p {
+      font-size: 0.88em;
+      line-height: 1.5;
+      color: var(--faded);
+      margin-bottom: 6px;
+    }
+    .cite-card a {
+      font-size: 0.78em;
+      color: var(--khaki);
+      word-break: break-all;
+      text-decoration: underline dotted;
+      display: block;
+    }
+    .cite-card a:hover { color: var(--cream); }
+    .stamp {
+      display: inline-block;
+      border: 3px solid var(--rust);
+      padding: 6px 14px;
+      font-family: 'Special Elite', cursive;
+      font-size: 0.7em;
+      letter-spacing: 3px;
+      color: var(--rust);
+      transform: rotate(-2deg);
+      margin-bottom: 12px;
+      opacity: 0.85;
+    }
+    .essay-placeholder {
+      background: rgba(74,74,42,0.1);
+      border: 2px dashed var(--khaki);
+      padding: 40px;
+      text-align: center;
+    }
+    .essay-placeholder p {
+      font-family: 'Special Elite', cursive;
+      font-size: 1.1em;
+      letter-spacing: 2px;
+      color: var(--faded);
+    }
+    .divider {
+      text-align: center;
+      color: var(--khaki);
+      font-family: 'Special Elite', cursive;
+      letter-spacing: 8px;
+      font-size: 0.75em;
+      margin: 48px 0 0;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>
+    <span>Social Studies Inquiry Project</span>
+    World War II
+  </h1>
+  <div class="inquiry-box">
+    <p>Why did totalitarian governments gain power during the 1930s, and what were the long-term social, economic, and political impacts of World War II on Canada and the world?</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- EXHIBIT 1 -->
+  <div class="exhibit">
+    <div class="exhibit-header">
+      <div class="exhibit-tag">EXHIBIT 1</div>
+      <div class="exhibit-line"></div>
+    </div>
+    <div class="exhibit-title">Inquiry Questions</div>
+    <div class="paper-card">
+      <div class="card-label">My Inquiry Questions</div>
+      <ul>
+        <li>How did economic problems after the Great Depression contribute to the start of World War II?</li>
+        <li>How did racism and nationalism influence the actions of Nazi Germany before and during WWII?</li>
+        <li>Why did totalitarian governments gain support in Europe during the 1930s?</li>
+        <li>How did propaganda affect people's attitudes and support for war during WWII?</li>
+        <li>Why did Canada join World War II, and what impacts did the war have on Canadians?</li>
+        <li>What were the social, economic, and political impacts of WWII on Canada and the world?</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EXHIBIT 2 -->
+  <div class="exhibit">
+    <div class="exhibit-header">
+      <div class="exhibit-tag">EXHIBIT 2</div>
+      <div class="exhibit-line"></div>
+    </div>
+    <div class="exhibit-title">Approved Inquiry Question</div>
+    <div class="paper-card">
+      <div class="stamp">✓ APPROVED</div>
+      <div class="card-title">Final Inquiry Question</div>
+      <p style="font-style:italic; font-size:1.05em; line-height:1.75; color:#2a2010;">
+        Why did totalitarian governments gain power during the 1930s, and what were the long-term social, economic, and political impacts of World War II on Canada and the world?
+      </p>
+    </div>
+  </div>
+
+  <!-- EXHIBIT 3 -->
+  <div class="exhibit">
+    <div class="exhibit-header">
+      <div class="exhibit-tag">EXHIBIT 3</div>
+      <div class="exhibit-line"></div>
+    </div>
+    <div class="exhibit-title">Works Cited</div>
+    <div class="cite-grid">
+      <div class="cite-card">
+        <div class="cite-num">SOURCE 1</div>
+        <p>The Canadian Encyclopedia — "The Great Depression in Canada"</p>
+        <a href="https://www.thecanadianencyclopedia.ca/en/article/great-depression">https://www.thecanadianencyclopedia.ca/en/article/great-depression</a>
+      </div>
+      <div class="cite-card">
+        <div class="cite-num">SOURCE 2</div>
+        <p>The Canadian Encyclopedia — "Canada and the Second World War"</p>
+        <a href="https://www.thecanadianencyclopedia.ca/en/article/second-world-war-wwii">https://www.thecanadianencyclopedia.ca/en/article/second-world-war-wwii</a>
+      </div>
+      <div class="cite-card">
+        <div class="cite-num">SOURCE 3</div>
+        <p>History.com Editors — "World War II" HISTORY</p>
+        <a href="https://www.history.com/topics/world-war-ii/world-war-ii-history">https://www.history.com/topics/world-war-ii/world-war-ii-history</a>
+      </div>
+      <div class="cite-card">
+        <div class="cite-num">SOURCE 4</div>
+        <p>The Canadian Encyclopedia — "Adolf Hitler"</p>
+        <a href="https://www.thecanadianencyclopedia.ca/en/article/adolf-hitler">https://www.thecanadianencyclopedia.ca/en/article/adolf-hitler</a>
+      </div>
+      <div class="cite-card">
+        <div class="cite-num">SOURCE 5</div>
+        <p>The Canadian Encyclopedia — "Dieppe Raid"</p>
+        <a href="https://www.thecanadianencyclopedia.ca/en/article/dieppe-raid">https://www.thecanadianencyclopedia.ca/en/article/dieppe-raid</a>
+      </div>
+      <div class="cite-card">
+        <div class="cite-num">SOURCE 6</div>
+        <p>Veterans Affairs Canada — "Canada Remembers the Second World War"</p>
+        <a href="https://www.veterans.gc.ca/en/remembrance/wars-and-conflicts/second-world-war">https://www.veterans.gc.ca/en/remembrance/wars-and-conflicts/second-world-war</a>
+      </div>
+      <div class="cite-card">
+        <div class="cite-num">SOURCE 7</div>
+        <p>Wikipedia — "World War II"</p>
+        <a href="https://en.wikipedia.org/wiki/World_War_II">https://en.wikipedia.org/wiki/World_War_II</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXHIBIT 4 -->
+  <div class="exhibit">
+    <div class="exhibit-header">
+      <div class="exhibit-tag">EXHIBIT 4</div>
+      <div class="exhibit-line"></div>
+    </div>
+    <div class="exhibit-title">Research Notes</div>
+
+    <div class="paper-card">
+      <div class="card-label">Source 1 Notes</div>
+      <div class="card-title">The Great Depression & the Rise of Totalitarianism</div>
+      <ul>
+        <li>The Great Depression started with the Stock Market Crash in 1929 and lasted through the 1930s, causing mass unemployment and poverty across Canada and the world.</li>
+        <li>Unemployment in Canada reached about 27% at its worst — millions of people had no jobs and no income.</li>
+        <li>Banks failed and families lost their savings. Businesses closed and international trade collapsed sharply.</li>
+        <li>Many families had to rely on soup kitchens and government relief programs just to survive.</li>
+        <li>The Prairie provinces suffered from drought and the Dust Bowl — crops failed completely and farmers lost everything.</li>
+        <li>The Canadian government was slow to respond. Relief camps paid unemployed men only 20 cents a day in terrible conditions.</li>
+        <li>Economic desperation made people across Europe angry and desperate, creating perfect conditions for extremist leaders to rise to power.</li>
+        <li>When governments failed to fix the economy, people turned to strong leaders who promised order, jobs, and national greatness.</li>
+      </ul>
+      <div class="source-footer">
+        <strong>Source:</strong>
+        <a href="https://www.thecanadianencyclopedia.ca/en/article/great-depression">https://www.thecanadianencyclopedia.ca/en/article/great-depression</a>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="card-label">Source 2 Notes</div>
+      <div class="card-title">How Totalitarian Governments Gained Power</div>
+      <ul>
+        <li>Fascism is a type of government where a dictator has total control, using extreme nationalism and military strength to dominate society.</li>
+        <li>Adolf Hitler led the Nazi Party in Germany. He promised to fix the economy, restore national pride, and rebuild Germany's military after WWI losses.</li>
+        <li>Hitler became Chancellor of Germany in 1933 and quickly dismantled democracy, removing political opponents and seizing total control.</li>
+        <li>He used propaganda — posters, radio, and speeches — to control what people believed, spread hatred of Jewish people, and build loyalty to the Nazi Party.</li>
+        <li>The Nuremberg Laws stripped Jewish people of their citizenship and rights, eventually leading to the Holocaust — the murder of six million Jewish people.</li>
+        <li>Benito Mussolini rose to power in Italy in 1922 using nationalism, fear, and promises of a powerful nation.</li>
+        <li>Francisco Franco took power in Spain after a brutal civil war, establishing another fascist dictatorship in Europe.</li>
+        <li>In Japan, military leaders took control in the 1930s, promoted extreme loyalty to the emperor, and expanded Japan's empire through invasion.</li>
+        <li>In Canada, intolerance also grew — Jewish, Asian, and Indigenous people were discriminated against and denied jobs during the Depression.</li>
+      </ul>
+      <div class="source-footer">
+        <strong>Sources:</strong>
+        <a href="https://www.history.com/topics/world-war-ii/world-war-ii-history">https://www.history.com/topics/world-war-ii/world-war-ii-history</a>
+        <a href="https://www.thecanadianencyclopedia.ca/en/article/adolf-hitler">https://www.thecanadianencyclopedia.ca/en/article/adolf-hitler</a>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="card-label">Source 3 Notes</div>
+      <div class="card-title">Canada's Role in World War II</div>
+      <ul>
+        <li>Canada declared war on Germany on September 10, 1939 — one week after Britain — showing loyalty to Britain while acting as an independent nation.</li>
+        <li>Over one million Canadians served in the armed forces during WWII, fighting in Europe, North Africa, and the Pacific.</li>
+        <li>The Royal Canadian Navy helped protect supply ships in the Battle of the Atlantic, fighting against German U-boat attacks throughout the war.</li>
+        <li>The Dieppe Raid of 1942 was a major disaster — over 900 Canadian soldiers killed and nearly 2,000 captured. German defences were far stronger than expected.</li>
+        <li>Lessons from Dieppe helped plan D-Day in June 1944. Canadians landed at Juno Beach as part of the massive Allied invasion of Nazi-occupied France.</li>
+        <li>About 22,000 Japanese Canadians were forced into internment camps — a major example of wartime racism inside Canada itself.</li>
+        <li>The war transformed Canada's economy. Factories switched to producing weapons and supplies, ending unemployment and raising wages across the country.</li>
+        <li>Women entered the workforce in large numbers, permanently changing gender roles and expectations in Canadian society.</li>
+      </ul>
+      <div class="source-footer">
+        <strong>Sources:</strong>
+        <a href="https://www.thecanadianencyclopedia.ca/en/article/second-world-war-wwii">https://www.thecanadianencyclopedia.ca/en/article/second-world-war-wwii</a>
+        <a href="https://www.thecanadianencyclopedia.ca/en/article/dieppe-raid">https://www.thecanadianencyclopedia.ca/en/article/dieppe-raid</a>
+        <a href="https://www.veterans.gc.ca/en/remembrance/wars-and-conflicts/second-world-war">https://www.veterans.gc.ca/en/remembrance/wars-and-conflicts/second-world-war</a>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="card-label">Source 4 Notes</div>
+      <div class="card-title">Key Battles & Technology</div>
+      <ul>
+        <li>The Battle of Britain (1940) — Germany tried to bomb Britain into surrender with air attacks. Britain's Royal Air Force held them off and prevented a German land invasion.</li>
+        <li>Radar technology allowed Britain to detect German aircraft early, giving pilots time to respond — a crucial advantage that helped Britain survive.</li>
+        <li>Hitler invaded the Soviet Union in 1941, breaking a non-aggression pact. Harsh winters and fierce Soviet resistance eventually stopped and pushed back Germany.</li>
+        <li>The Battle of the Atlantic was the longest campaign of WWII. Canada's navy defended supply routes against German U-boats for the entire duration of the war.</li>
+        <li>Allied scientists cracked Germany's Enigma code, allowing the Allies to read secret German military communications — a massive strategic advantage.</li>
+        <li>Medical advances included battlefield blood transfusions and penicillin to treat infections, saving thousands of soldiers who would otherwise have died.</li>
+        <li>The atomic bomb was dropped on Hiroshima (August 6) and Nagasaki (August 9) in 1945, ending the war in the Pacific and changing warfare forever.</li>
+      </ul>
+      <div class="source-footer">
+        <strong>Sources:</strong>
+        <a href="https://www.history.com/topics/world-war-ii/world-war-ii-history">https://www.history.com/topics/world-war-ii/world-war-ii-history</a>
+        <a href="https://en.wikipedia.org/wiki/World_War_II">https://en.wikipedia.org/wiki/World_War_II</a>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="card-label">Source 5 Notes</div>
+      <div class="card-title">Long-Term Impacts of World War II</div>
+      <ul>
+        <li>WWII was the deadliest conflict in human history — between 70 and 85 million people died, most of them civilians.</li>
+        <li>The Holocaust resulted in the systematic murder of six million Jewish people and millions of others by the Nazi regime.</li>
+        <li>The United Nations was created in 1945 to promote international peace, cooperation, and human rights so a conflict like WWII would never happen again.</li>
+        <li>The political map of the world changed completely — empires collapsed, new countries formed, and Germany was split into democratic West Germany and communist East Germany.</li>
+        <li>The Cold War between the United States and the Soviet Union shaped global politics for decades, with both sides building massive armies and nuclear weapons.</li>
+        <li>The Marshall Plan provided billions in U.S. aid to rebuild Western Europe, restart economies, and stop the spread of communism.</li>
+        <li>Canada emerged stronger and more independent, with a booming economy and a much greater role in international affairs.</li>
+        <li>The Nuremberg Trials held Nazi leaders accountable for war crimes and crimes against humanity, creating new principles in international law still used today.</li>
+        <li>Women who proved themselves in wartime workplaces helped spark future movements for gender equality and women's rights around the world.</li>
+      </ul>
+      <div class="source-footer">
+        <strong>Sources:</strong>
+        <a href="https://www.thecanadianencyclopedia.ca/en/article/second-world-war-wwii">https://www.thecanadianencyclopedia.ca/en/article/second-world-war-wwii</a>
+        <a href="https://www.history.com/topics/world-war-ii/world-war-ii-history">https://www.history.com/topics/world-war-ii/world-war-ii-history</a>
+        <a href="https://www.veterans.gc.ca/en/remembrance/wars-and-conflicts/second-world-war">https://www.veterans.gc.ca/en/remembrance/wars-and-conflicts/second-world-war</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EXHIBIT 5 -->
+  <div class="exhibit">
+    <div class="exhibit-header">
+      <div class="exhibit-tag">EXHIBIT 5</div>
+      <div class="exhibit-line"></div>
+    </div>
+    <div class="exhibit-title">Essay</div>
+    <div class="essay-placeholder">
+      <p>— Essay to be submitted separately —</p>
+    </div>
+  </div>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+</div>
+</body>
+</html>
