@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Rise of Totalitarianism & WWII's Impact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --olive: #4a4a2a;
+      --khaki: #8b7d5a;
+      --cream: #f5f0e0;
+      --dark: #1a1810;
+      --rust: #8b3a1a;
+      --faded: #c9b99a;
+      --paper: #ede8d5;
+      --mid: #2a2810;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--dark);
+      color: var(--cream);
+      font-family: 'Libre Baskerville', serif;
+      line-height: 1.75;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(20,18,10,0.97);
+      border-bottom: 2px solid var(--khaki);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    nav a {
+      color: var(--faded);
+      text-decoration: none;
+      font-family: 'Special Elite', cursive;
+      font-size: 0.75em;
+      letter-spacing: 2px;
+      padding: 14px 20px;
+      border-right: 1px solid rgba(139,125,90,0.2);
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover { color: var(--cream); background: rgba(139,58,26,0.2); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      background:
+        linear-gradient(to bottom, rgba(10,10,6,0.85) 0%, rgba(26,24,16,0.9) 100%),
+        url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Bundesarchiv_Bild_183-H1216-0500-002%2C_Infanterie_im_Vormarsch.jpg/1280px-Bundesarchiv_Bild_183-H1216-0500-002%2C_Infanterie_im_Vormarsch.jpg') center/cover no-repeat;
+      position: relative;
+    }
+    .hero-tag {
+      font-family: 'Special Elite', cursive;
+      font-size: 0.8em;
+      letter-spacing: 6px;
+      color: var(--khaki);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Special Elite', cursive;
+      font-size: clamp(2em, 6vw, 4em);
+      color: var(--cream);
+      line-height: 1.2;
+      max-width: 820px;
+      text-shadow: 2px 4px 16px rgba(0,0,0,0.9);
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      color: #c8a060;
+      font-style: normal;
+    }
+    .hero-sub {
+      font-size: 1em;
+      color: var(--faded);
+      max-width: 600px;
+      font-style: italic;
+      margin-bottom: 40px;
+    }
+    .hero-scroll {
+      font-family: 'Special Elite', cursive;
+      font-size: 0.7em;
+      letter-spacing: 3px;
+      color: var(--khaki);
+      border: 1px solid var(--khaki);
+      padding: 10px 24px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .hero-scroll:hover { background: var(--rust); color: var(--cream); border-color: var(--rust); }
+
+    /* SECTIONS */
+    section {
+      padding: 90px 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: 'Special Elite', cursive;
+      font-size: 0.75em;
+      letter-spacing: 5px;
+      color: var(--rust);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Special Elite', cursive;
+      font-size: clamp(1.6em, 4vw, 2.4em);
+      color: var(--cream);
+      margin-bottom: 18px;
+      line-height: 1.25;
+    }
+    .section-intro {
+      color: var(--faded);
+      font-size: 1.05em;
+      max-width: 700px;
+      margin-bottom: 50px;
+      border-left: 3px solid var(--rust);
+      padding-left: 18px;
+    }
+    .divider-line {
+      border: none;
+      border-top: 1px solid rgba(139,125,90,0.3);
+      margin: 0 0 50px;
+    }
+
+    /* CARD GRID */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--paper);
+      color: var(--dark);
+      padding: 28px 26px;
+      border-top: 4px solid var(--rust);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+    }
+    .card-icon {
+      font-size: 1.8em;
+      margin-bottom: 12px;
+    }
+    .card h3 {
+      font-family: 'Special Elite', cursive;
+      font-size: 1.1em;
+      color: var(--olive);
+      margin-bottom: 10px;
+    }
+    .card p {
+      font-size: 0.93em;
+      color: #3a2e1e;
+      line-height: 1.65;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--rust), var(--khaki), transparent);
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+    .tl-item::before {
+      content: "";
+      position: absolute;
+      left: -34px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      background: var(--rust);
+      border: 2px solid var(--khaki);
+    }
+    .tl-year {
+      font-family: 'Special Elite', cursive;
+      font-size: 0.8em;
+      letter-spacing: 3px;
+      color: var(--khaki);
+      margin-bottom: 4px;
+    }
+    .tl-item h3 {
+      font-family: 'Special Elite', cursive;
+      font-size: 1.15em;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .tl-item p {
+      color: var(--faded);
+      font-size: 0.95em;
+    }
+
+    /* IMPACT SECTION — alternating */
+    .impact-block {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid rgba(139,125,90,0.2);
+    }
+    .impact-block:last-child { border-bottom: none; margin-bottom: 0; }
+    .impact-num {
+      font-family: 'Special Elite', cursive;
+      font-size: 4em;
+      color: rgba(139,58,26,0.25);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 80px;
+      text-align: right;
+    }
+    .impact-content h3 {
+      font-family: 'Special Elite', cursive;
+      font-size: 1.3em;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .impact-content p {
+      color: var(--faded);
+      font-size: 0.97em;
+    }
+    .impact-content .tag {
+      display: inline-block;
+      background: var(--rust);
+      font-family: 'Special Elite', cursive;
+      font-size: 0.65em;
+      letter-spacing: 2px;
+      padding: 3px 10px;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    /* CANADA SECTION */
+    .canada-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+    }
+    .canada-cell {
+      background: var(--mid);
+      padding: 28px 24px;
+      border: 1px solid rgba(139,125,90,0.15);
+    }
+    .canada-cell h3 {
+      font-family: 'Special Elite', cursive;
+      font-size: 1em;
+      color: var(--khaki);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .canada-cell p {
+      font-size: 0.9em;
+      color: var(--faded);
+      line-height: 1.6;
+    }
+
+    /* DARK BAND */
+    .dark-band {
+      background: var(--mid);
+      border-top: 1px solid rgba(139,125,90,0.2);
+      border-bottom: 1px solid rgba(139,125,90,0.2);
+    }
+
+    /* QUOTE */
+    .pull-quote {
+      border-left: 4px solid var(--rust);
+      padding: 20px 28px;
+      margin: 40px 0;
+      background: rgba(139,58,26,0.08);
+    }
+    .pull-quote p {
+      font-style: italic;
+      font-size: 1.15em;
+      color: var(--cream);
+      line-height: 1.7;
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.8em;
+      color: var(--khaki);
+      font-style: normal;
+      font-family: 'Special Elite', cursive;
+      letter-spacing: 1px;
+    }
+
+    /* SOURCES */
+    .sources-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .sources-list li {
+      padding: 14px 18px;
+      background: rgba(74,74,42,0.12);
+      border-left: 3px solid var(--khaki);
+      font-size: 0.9em;
+      color: var(--faded);
+    }
+    .sources-list li a {
+      display: block;
+      color: var(--khaki);
+      margin-top: 4px;
+      font-size: 0.85em;
+      word-break: break-all;
+      text-decoration: underline dotted;
+    }
+    .sources-list li a:hover { color: var(--cream); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-family: 'Special Elite', cursive;
+      font-size: 0.75em;
+      letter-spacing: 3px;
+      color: rgba(139,125,90,0.4);
+      border-top: 1px solid rgba(139,125,90,0.15);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#rise">The Rise of Totalitarianism</a>
+  <a href="#leaders">Key Leaders</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#impacts">Long-Term Impacts</a>
+  <a href="#canada">Impact on Canada</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-tag">✦ WWII INQUIRY PROJECT ✦</p>
+  <h1>Why Did <em>Totalitarian Governments</em> Gain Power in the 1930s?</h1>
+  <p class="hero-sub">And what were the long-term social, economic, and political impacts of World War II on Canada and the world?</p>
+  <a class="hero-scroll" href="#rise">EXPLORE ↓</a>
+</div>
+
+<!-- SECTION 1: RISE OF TOTALITARIANISM -->
+<section id="rise">
+  <p class="section-label">PART ONE</p>
+  <h2 class="section-title">The Rise of Totalitarianism</h2>
+  <p class="section-intro">Totalitarian governments did not appear overnight. They rose because of a perfect storm of economic collapse, public desperation, and political failure across Europe during the 1930s.</p>
+  <hr class="divider-line"/>
+
+  <div class="pull-quote">
+    <p>When people are desperate, hungry, and hopeless — they will follow anyone who promises them a better future, no matter the cost.</p>
+    <cite>— The core reason totalitarianism succeeded in the 1930s</cite>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">📉</div>
+      <h3>The Great Depression</h3>
+      <p>The Stock Market Crash of 1929 triggered a global economic collapse. In Canada, unemployment hit 27%. In Germany, millions were jobless and starving. Democratic governments could not solve the crisis, and people lost faith in them. This desperation created space for extremist leaders to offer simple answers to complex problems.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📢</div>
+      <h3>Propaganda & Fear</h3>
+      <p>Totalitarian leaders were master manipulators. Hitler used radio, posters, rallies, and film to spread his ideas to millions. He blamed Jewish people and other groups for Germany's suffering. By controlling what people heard and saw, he shaped what they believed. Fear and hatred became powerful tools for gaining loyalty.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏛️</div>
+      <h3>Weak Democracies</h3>
+      <p>Germany's democratic government — the Weimar Republic — was young and unstable. It had already survived hyperinflation, street violence, and political chaos. When the Depression hit, it had no answers. Voters abandoned mainstream parties and turned to the Nazi Party, which promised strength, jobs, and national pride.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎖️</div>
+      <h3>Nationalism & Humiliation</h3>
+      <p>After WWI, Germany was forced to sign the Treaty of Versailles, which blamed Germany for the war, stripped territory, and demanded enormous payments. This humiliated the German people. Hitler promised to undo this humiliation and restore German greatness — a message that resonated with millions of angry, struggling citizens.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Violence & Intimidation</h3>
+      <p>The Nazi Party used violence to silence opponents. Hitler's private armies — the SA and SS — attacked political rivals, broke up opposition meetings, and terrorized communities. Once Hitler became Chancellor in 1933, he used the full power of the state to imprison, exile, or eliminate anyone who challenged him.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌍</div>
+      <h3>It Wasn't Just Germany</h3>
+      <p>Fascism spread across Europe. Mussolini had already built a dictatorship in Italy in 1922. Franco took control of Spain after a brutal civil war. In Japan, military leaders seized control and expanded the empire through invasion. The global economic crisis created fertile ground for authoritarian rule almost everywhere.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: KEY LEADERS -->
+<div class="dark-band">
+<section id="leaders">
+  <p class="section-label">PART TWO</p>
+  <h2 class="section-title">The Leaders Who Changed the World</h2>
+  <p class="section-intro">Three men in particular shaped the 1930s and dragged the world into the deadliest conflict in human history.</p>
+  <hr class="divider-line"/>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🇩🇪</div>
+      <h3>Adolf Hitler — Germany</h3>
+      <p>Hitler became Chancellor of Germany in 1933 and quickly dismantled democracy. He created the Nazi dictatorship, introduced the Nuremberg Laws stripping Jewish people of rights, used propaganda to build fanatical public support, and launched the military expansion that started World War II in 1939. His regime carried out the Holocaust — the murder of six million Jewish people.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🇮🇹</div>
+      <h3>Benito Mussolini — Italy</h3>
+      <p>Mussolini took power in Italy in 1922, becoming the world's first fascist dictator. He banned opposition parties, controlled the media, and built a cult of personality around himself. He allied with Hitler and dreamed of rebuilding a Roman Empire. Mussolini showed that fascism could work — inspiring Hitler and others across Europe.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🇯🇵</div>
+      <h3>Military Leaders — Japan</h3>
+      <p>Japan's military leaders promoted extreme nationalism and loyalty to Emperor Hirohito. They invaded Manchuria in 1931 and China in 1937, building a brutal empire across Asia. Japan's attack on Pearl Harbor in December 1941 brought the United States into the war and expanded the conflict into a truly global war.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- SECTION 3: TIMELINE -->
+<section id="timeline">
+  <p class="section-label">PART THREE</p>
+  <h2 class="section-title">Key Events: 1929–1945</h2>
+  <p class="section-intro">From economic collapse to world war — the major turning points that shaped the 1930s and 1940s.</p>
+  <hr class="divider-line"/>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1929</div>
+      <h3>The Stock Market Crash</h3>
+      <p>Wall Street collapses, triggering the Great Depression worldwide. Millions lose jobs, savings, and hope. The political instability that follows opens the door to extremism.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1933</div>
+      <h3>Hitler Becomes Chancellor of Germany</h3>
+      <p>Adolf Hitler is appointed Chancellor and rapidly transforms Germany into a dictatorship. Democracy is dismantled, political opponents are imprisoned, and the Nazi state is born.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1935</div>
+      <h3>The Nuremberg Laws</h3>
+      <p>Nazi Germany passes laws stripping Jewish people of citizenship and basic rights, laying the foundation for the persecution and eventual Holocaust.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1939</div>
+      <h3>World War II Begins</h3>
+      <p>Germany invades Poland on September 1st. Britain and France declare war on Germany. Canada joins the fight on September 10th — one week after Britain, asserting its independence.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1940</div>
+      <h3>The Battle of Britain</h3>
+      <p>Germany launches a massive air campaign to destroy Britain. The Royal Air Force fights back and wins, preventing a German invasion. Radar technology proves decisive.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1941</div>
+      <h3>Hitler Invades the Soviet Union & Japan Attacks Pearl Harbor</h3>
+      <p>Germany breaks its pact with the Soviet Union and invades. Japan attacks the U.S. naval base at Pearl Harbor, bringing America into the war and making it truly global.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1942</div>
+      <h3>The Dieppe Raid</h3>
+      <p>Canadian soldiers lead a raid on Dieppe, France. It ends in disaster — over 900 Canadians killed and nearly 2,000 captured. But lessons from this failure help plan the eventual D-Day success.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1944</div>
+      <h3>D-Day — The Normandy Invasion</h3>
+      <p>Allied forces storm the beaches of Normandy, France. Canadians land at Juno Beach. It marks the beginning of the end for Nazi Germany and is one of the largest military operations in history.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1945</div>
+      <h3>The War Ends</h3>
+      <p>Germany surrenders in May. Atomic bombs are dropped on Hiroshima and Nagasaki in August, and Japan surrenders. World War II is over — but the world is forever changed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: LONG-TERM IMPACTS -->
+<div class="dark-band">
+<section id="impacts">
+  <p class="section-label">PART FOUR</p>
+  <h2 class="section-title">Long-Term Impacts on the World</h2>
+  <p class="section-intro">WWII did not just end — it reshaped every aspect of life on earth. Its effects are still felt today, more than 80 years later.</p>
+  <hr class="divider-line"/>
+
+  <div class="impact-block">
+    <div class="impact-num">01</div>
+    <div class="impact-content">
+      <span class="tag">SOCIAL</span>
+      <h3>The Holocaust & Human Rights</h3>
+      <p>The Holocaust — the systematic murder of six million Jewish people and millions of others by the Nazi regime — shocked the world. It forced humanity to confront what hatred, racism, and unchecked government power could lead to. In response, the world created the Universal Declaration of Human Rights in 1948, establishing that all people have fundamental rights that no government can take away.</p>
+    </div>
+  </div>
+
+  <div class="impact-block">
+    <div class="impact-num">02</div>
+    <div class="impact-content">
+      <span class="tag">POLITICAL</span>
+      <h3>The United Nations</h3>
+      <p>The United Nations was founded in 1945 to promote international peace, cooperation, and human rights. The world had now fought two catastrophic world wars in thirty years, and leaders knew something had to change. The UN gave countries a place to resolve disputes without war — it still operates today with 193 member countries.</p>
+    </div>
+  </div>
+
+  <div class="impact-block">
+    <div class="impact-num">03</div>
+    <div class="impact-content">
+      <span class="tag">POLITICAL</span>
+      <h3>The Cold War</h3>
+      <p>WWII ended with two superpowers — the United States and the Soviet Union — in control of much of the world. They had been allies against Hitler, but had completely opposite political systems. The Cold War that followed lasted until 1991 and defined global politics for decades, including proxy wars, a nuclear arms race, and the division of Europe into democratic West and communist East.</p>
+    </div>
+  </div>
+
+  <div class="impact-block">
+    <div class="impact-num">04</div>
+    <div class="impact-content">
+      <span class="tag">ECONOMIC</span>
+      <h3>Rebuilding Europe — The Marshall Plan</h3>
+      <p>WWII left Europe in ruins. The United States responded with the Marshall Plan, providing billions of dollars to rebuild Western European economies. This helped stabilize democracy across the continent and prevented more countries from falling to communism. It also established the U.S. as the world's dominant economic power for decades.</p>
+    </div>
+  </div>
+
+  <div class="impact-block">
+    <div class="impact-num">05</div>
+    <div class="impact-content">
+      <span class="tag">LEGAL</span>
+      <h3>The Nuremberg Trials</h3>
+      <p>For the first time in history, leaders of a defeated nation were put on trial for war crimes and crimes against humanity. The Nuremberg Trials established a crucial principle: following orders is not an excuse for committing atrocities. This laid the foundation for modern international criminal law and the concept that individuals — including heads of state — can be held accountable.</p>
+    </div>
+  </div>
+
+  <div class="impact-block">
+    <div class="impact-num">06</div>
+    <div class="impact-content">
+      <span class="tag">SOCIAL</span>
+      <h3>Women's Roles Changed Forever</h3>
+      <p>When millions of men went to war, women filled their jobs in factories, offices, and farms. They proved they could do anything men could do. When the war ended, many women refused to simply return to domestic life. This shift was a key foundation for the women's rights movements of the 1960s and 1970s that changed society permanently.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- SECTION 5: IMPACT ON CANADA -->
+<section id="canada">
+  <p class="section-label">PART FIVE</p>
+  <h2 class="section-title">The Impact on Canada</h2>
+  <p class="section-intro">World War II transformed Canada — economically, socially, and politically. Canada entered the war as a British colony in spirit and came out of it as a true independent nation.</p>
+  <hr class="divider-line"/>
+
+  <div class="canada-grid">
+    <div class="canada-cell">
+      <h3>🪖 Military Contribution</h3>
+      <p>Over one million Canadians served in the armed forces. Canadians fought in the Battle of the Atlantic, the Italian Campaign, D-Day at Juno Beach, and in the Pacific. Canada lost over 45,000 soldiers — a massive sacrifice for a country of only 11 million people.</p>
+    </div>
+    <div class="canada-cell">
+      <h3>💰 Economic Transformation</h3>
+      <p>The war ended the Great Depression. Canadian factories switched from consumer goods to weapons, planes, and ships. Unemployment disappeared almost overnight. Canada's GDP grew dramatically, and the country emerged as one of the world's leading industrial economies.</p>
+    </div>
+    <div class="canada-cell">
+      <h3>👩 Women in the Workforce</h3>
+      <p>With men overseas, Canadian women filled jobs that had never been open to them before — in factories, transportation, and government. This permanently changed expectations about women's roles and helped fuel demands for greater equality in the decades that followed.</p>
+    </div>
+    <div class="canada-cell">
+      <h3>⚠️ Japanese Canadian Internment</h3>
+      <p>One of Canada's darkest wartime acts: about 22,000 Japanese Canadians were forced from their homes and placed in internment camps. Their property was sold without consent. This was a major example of racism and fear overriding justice — and Canada did not officially apologize until 1988.</p>
+    </div>
+    <div class="canada-cell">
+      <h3>🌍 Independence on the World Stage</h3>
+      <p>Canada declared war one week after Britain — not on the same day. This small difference was significant. Canada was asserting its right to make its own decisions. After the war, Canada helped found the United Nations and became an active player in shaping the postwar world order.</p>
+    </div>
+    <div class="canada-cell">
+      <h3>🎖️ The Dieppe Lesson</h3>
+      <p>The disastrous Dieppe Raid of 1942 cost over 900 Canadian lives. But the brutal lessons learned — about planning, intelligence, and coordination — directly shaped the successful D-Day invasion two years later. Canadian sacrifice contributed to Allied victory.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<div class="dark-band">
+<section id="sources">
+  <p class="section-label">SOURCES</p>
+  <h2 class="section-title">Works Cited</h2>
+  <hr class="divider-line"/>
+  <ul class="sources-list">
+    <li>
+      The Canadian Encyclopedia — "The Great Depression in Canada"
+      <a href="https://www.thecanadianencyclopedia.ca/en/article/great-depression">https://www.thecanadianencyclopedia.ca/en/article/great-depression</a>
+    </li>
+    <li>
+      The Canadian Encyclopedia — "Canada and the Second World War"
+      <a href="https://www.thecanadianencyclopedia.ca/en/article/second-world-war-wwii">https://www.thecanadianencyclopedia.ca/en/article/second-world-war-wwii</a>
+    </li>
+    <li>
+      History.com Editors — "World War II" HISTORY
+      <a href="https://www.history.com/topics/world-war-ii/world-war-ii-history">https://www.history.com/topics/world-war-ii/world-war-ii-history</a>
+    </li>
+    <li>
+      The Canadian Encyclopedia — "Adolf Hitler"
+      <a href="https://www.thecanadianencyclopedia.ca/en/article/adolf-hitler">https://www.thecanadianencyclopedia.ca/en/article/adolf-hitler</a>
+    </li>
+    <li>
+      The Canadian Encyclopedia — "Dieppe Raid"
+      <a href="https://www.thecanadianencyclopedia.ca/en/article/dieppe-raid">https://www.thecanadianencyclopedia.ca/en/article/dieppe-raid</a>
+    </li>
+    <li>
+      Veterans Affairs Canada — "Canada Remembers the Second World War"
+      <a href="https://www.veterans.gc.ca/en/remembrance/wars-and-conflicts/second-world-war">https://www.veterans.gc.ca/en/remembrance/wars-and-conflicts/second-world-war</a>
+    </li>
+    <li>
+      Wikipedia — "World War II"
+      <a href="https://en.wikipedia.org/wiki/World_War_II">https://en.wikipedia.org/wiki/World_War_II</a>
+    </li>
+  </ul>
+</section>
+</div>
+
+<footer>
+  ✦ &nbsp; WWII SOCIAL STUDIES INQUIRY PROJECT &nbsp; ✦
+</footer>
+
+</body>
+</html>
